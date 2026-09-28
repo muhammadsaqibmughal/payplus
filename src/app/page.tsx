@@ -1,11 +1,5 @@
-import { ThemeBackground } from "@/components/ThemeBackground";
-import { LandingExperience } from "@/components/landing/LandingExperience";
+import { redirect } from "next/navigation";
 
 export default function HomePage() {
-  return (
-    <>
-      <ThemeBackground variant="main" dim={0.3} />
-      <LandingExperience />
-    </>
-  );
+  redirect("/signup");
 }

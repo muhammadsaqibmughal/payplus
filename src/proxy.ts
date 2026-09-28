@@ -21,12 +21,18 @@ async function hasValidSession(request: NextRequest) {
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const authenticated = await hasValidSession(request);
+
+  if (pathname === "/") {
+    return NextResponse.redirect(
+      new URL(authenticated ? "/dashboard" : "/signup", request.url),
+    );
+  }
+
   const isProtected = PROTECTED.some((p) => pathname.startsWith(p));
   const isAuthOnly = AUTH_ONLY.some((p) => pathname.startsWith(p));
 
   if (!isProtected && !isAuthOnly) return NextResponse.next();
-
-  const authenticated = await hasValidSession(request);
 
   if (isProtected && !authenticated) {
     return NextResponse.redirect(new URL("/login", request.url));
@@ -40,5 +46,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/login", "/signup"],
+  matcher: ["/", "/dashboard/:path*", "/login", "/signup"],
 };

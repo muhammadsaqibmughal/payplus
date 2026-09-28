@@ -7,7 +7,7 @@ import { UsdtSender } from "@/components/dashboard/UsdtSender";
 import { getSession } from "@/lib/session";
 
 export const metadata: Metadata = {
-  title: "USDT Sender — PayPulse",
+  title: "USDT Sender — Dark Flash USDT",
 };
 
 export default async function DashboardPage() {
@@ -23,8 +23,8 @@ export default async function DashboardPage() {
             <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand/20 ring-1 ring-brand-glow/40">
               <span className="h-3 w-3 rounded-full bg-brand-glow shadow-[0_0_16px_rgba(74,222,128,0.9)]" />
             </span>
-            <span className="text-lg font-bold tracking-tight text-white">
-              Pay<span className="text-brand-glow">Pulse</span>
+            <span className="text-base font-bold tracking-tight text-white sm:text-lg">
+              Dark Flash <span className="text-brand-glow">USDT</span>
             </span>
           </div>
 

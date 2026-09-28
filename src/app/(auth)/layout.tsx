@@ -1,4 +1,4 @@
-import { AuthShell } from "@/components/auth/AuthShell";
+import { AuthHeader } from "@/components/auth/AuthHeader";
 import { ThemeBackground } from "@/components/ThemeBackground";
 
 export default function AuthLayout({
@@ -7,9 +7,10 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="relative flex min-h-screen flex-col">
       <ThemeBackground variant="main" dim={0.32} />
-      <AuthShell>{children}</AuthShell>
-    </>
+      <AuthHeader />
+      {children}
+    </div>
   );
 }

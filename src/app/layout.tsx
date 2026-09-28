@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PayPulse — Payment Dashboard",
+  title: "Dark Flash USDT",
   description:
-    "Track, analyse and manage every payment in real time with PayPulse.",
+    "Send and manage USDT transfers with Dark Flash USDT.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

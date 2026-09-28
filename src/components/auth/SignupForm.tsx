@@ -5,7 +5,7 @@ import { Lock, Mail, User } from "lucide-react";
 import { signup } from "@/app/actions/auth";
 import { AuthInput } from "./AuthInput";
 import { SubmitButton } from "./SubmitButton";
-import { AuthSwitchLink } from "./AuthSwitchLink";
+import Link from "next/link";
 
 export function SignupForm() {
   const [state, action, pending] = useActionState(signup, undefined);
@@ -61,7 +61,9 @@ export function SignupForm() {
 
       <p className="mt-3 text-center text-xs text-white/55">
         Already have an account?{" "}
-        <AuthSwitchLink href="/login">Sign in here</AuthSwitchLink>
+        <Link href="/login" className="font-medium text-brand-glow hover:underline">
+          Sign in here
+        </Link>
       </p>
     </form>
   );

@@ -46,30 +46,6 @@ body {
   background: var(--background);
 }
 
-.glow-text {
-  text-shadow: 0 0 24px rgba(74, 222, 128, 0.55);
-}
-
-.coin-shadow {
-  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.55))
-    drop-shadow(0 0 30px rgba(74, 222, 128, 0.25));
-}
-
-@keyframes pulse-ring {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.6;
-  }
-  100% {
-    transform: scale(1.6);
-    opacity: 0;
-  }
-}
-
-.pulse-ring {
-  animation: pulse-ring 2.2s ease-out infinite;
-}
-
 /* Keep browser autofill from painting a white box over the glass fields */
 .auth-field:-webkit-autofill,
 .auth-field:-webkit-autofill:hover,
@@ -78,26 +54,4 @@ body {
   caret-color: #ffffff;
   transition: background-color 9999s ease-out;
   box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.06) inset;
-}
-
-/* Chamfered glass card used by login / signup */
-.auth-clip {
-  --auth-cut: 1.75rem;
-  clip-path: polygon(
-    var(--auth-cut) 0%,
-    calc(100% - var(--auth-cut)) 0%,
-    100% var(--auth-cut),
-    100% calc(100% - var(--auth-cut)),
-    calc(100% - var(--auth-cut)) 100%,
-    var(--auth-cut) 100%,
-    0% calc(100% - var(--auth-cut)),
-    0% var(--auth-cut)
-  );
-  transition: clip-path 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .auth-clip {
-    transition: none;
-  }
 }
