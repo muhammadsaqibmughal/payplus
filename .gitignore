@@ -34,6 +34,9 @@ yarn-error.log*
 .env*
 !.env.example
 
+# local csv user store (created at runtime)
+/data/users.csv
+
 # vercel
 .vercel
 

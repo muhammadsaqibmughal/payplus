@@ -1,11 +1,10 @@
 "use server";
 
 import bcrypt from "bcryptjs";
-import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import * as z from "zod";
-import { db, schema } from "@/db";
 import { createSession, deleteSession } from "@/lib/session";
+import { createUser, findUserByEmail } from "@/lib/users-csv";
 import { LoginSchema, SignupSchema, type AuthFormState } from "@/lib/validation";
 
 function flatten(error: z.ZodError) {
@@ -32,33 +31,24 @@ export async function signup(
   }
 
   const { name, email, password } = parsed.data;
-  const normalizedEmail = email.toLowerCase();
 
   try {
-    const existing = await db.query.users.findFirst({
-      where: eq(schema.users.email, normalizedEmail),
-      columns: { id: true },
+    const passwordHash = await bcrypt.hash(password, 12);
+    const result = await createUser({
+      name,
+      email,
+      passwordHash,
     });
 
-    if (existing) {
+    if ("error" in result) {
       return {
         errors: { email: ["An account with this email already exists."] },
         values,
       };
     }
 
-    const passwordHash = await bcrypt.hash(password, 12);
-
-    const [user] = await db
-      .insert(schema.users)
-      .values({ name, email: normalizedEmail, passwordHash })
-      .returning({
-        id: schema.users.id,
-        email: schema.users.email,
-        name: schema.users.name,
-      });
-
-    await createSession(user);
+    const { user } = result;
+    await createSession({ id: user.id, email: user.email, name: user.name });
   } catch (error) {
     console.error("signup failed", error);
     return {
@@ -88,13 +78,10 @@ export async function login(
   const { email, password } = parsed.data;
 
   try {
-    const user = await db.query.users.findFirst({
-      where: eq(schema.users.email, email.toLowerCase()),
-    });
-
+    const user = await findUserByEmail(email);
     const valid = user && (await bcrypt.compare(password, user.passwordHash));
 
-    if (!valid) {
+    if (!valid || !user) {
       return { message: "Invalid email or password.", values };
     }
 

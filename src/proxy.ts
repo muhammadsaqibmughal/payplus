@@ -1,13 +1,14 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { jwtVerify } from "jose";
+import { getSessionSecret } from "@/lib/auth-secret";
 
 const PROTECTED = ["/dashboard"];
 const AUTH_ONLY = ["/login", "/signup"];
 
 async function hasValidSession(request: NextRequest) {
   const token = request.cookies.get("session")?.value;
-  const secret = process.env.SESSION_SECRET;
-  if (!token || !secret) return false;
+  const secret = getSessionSecret();
+  if (!token) return false;
   try {
     await jwtVerify(token, new TextEncoder().encode(secret), {
       algorithms: ["HS256"],

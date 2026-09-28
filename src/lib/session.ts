@@ -1,6 +1,7 @@
 import "server-only";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
+import { getSessionSecret } from "@/lib/auth-secret";
 
 export const SESSION_COOKIE = "session";
 const SESSION_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
@@ -13,11 +14,7 @@ export type SessionPayload = {
 };
 
 function getSecret() {
-  const secret = process.env.SESSION_SECRET;
-  if (!secret || secret.length < 32) {
-    throw new Error("SESSION_SECRET must be set and at least 32 characters.");
-  }
-  return new TextEncoder().encode(secret);
+  return new TextEncoder().encode(getSessionSecret());
 }
 
 export async function encrypt(payload: SessionPayload) {
