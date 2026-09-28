@@ -16,7 +16,6 @@ export async function signup(
   formData: FormData,
 ): Promise<AuthFormState> {
   const values = {
-    name: String(formData.get("name") ?? ""),
     email: String(formData.get("email") ?? ""),
   };
 
@@ -30,7 +29,8 @@ export async function signup(
     return { errors: flatten(parsed.error), values };
   }
 
-  const { name, email, password } = parsed.data;
+  const { email, password } = parsed.data;
+  const name = email.split("@")[0] || "User";
 
   try {
     const passwordHash = await bcrypt.hash(password, 12);

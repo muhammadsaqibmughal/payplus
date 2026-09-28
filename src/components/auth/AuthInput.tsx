@@ -34,11 +34,11 @@ export function AuthInput({
         {placeholder}
       </label>
       <div
-        className={`flex h-14 items-center gap-3 rounded-2xl border bg-white/5 px-5 backdrop-blur transition focus-within:border-brand-glow/60 focus-within:bg-white/10 ${
+        className={`flex h-11 items-center gap-2.5 rounded-2xl border bg-white/5 px-3.5 backdrop-blur transition focus-within:border-brand-glow/60 focus-within:bg-white/10 sm:h-14 sm:gap-3 sm:px-5 ${
           hasError ? "border-red-400/70" : "border-white/10"
         }`}
       >
-        <Icon className="h-5 w-5 shrink-0 text-white/70" aria-hidden />
+        <Icon className="h-4 w-4 shrink-0 text-white/70 sm:h-5 sm:w-5" aria-hidden />
         <input
           id={id}
           name={name}
@@ -46,7 +46,7 @@ export function AuthInput({
           placeholder={placeholder}
           autoComplete={autoComplete}
           defaultValue={defaultValue}
-          className="auth-field h-full w-full bg-transparent text-[15px] text-white outline-none placeholder:text-white/45"
+          className="auth-field h-full w-full bg-transparent text-sm text-white outline-none placeholder:text-white/45 sm:text-[15px]"
           aria-invalid={hasError || undefined}
         />
         {isPassword && (
@@ -57,9 +57,9 @@ export function AuthInput({
             className="shrink-0 text-white/55 transition hover:text-white"
           >
             {revealed ? (
-              <Eye className="h-5 w-5" />
+              <Eye className="h-4 w-4 sm:h-5 sm:w-5" />
             ) : (
-              <EyeOff className="h-5 w-5" />
+              <EyeOff className="h-4 w-4 sm:h-5 sm:w-5" />
             )}
           </button>
         )}

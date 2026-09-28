@@ -9,20 +9,20 @@ export function AuthHeader() {
   const onLogin = pathname === "/login";
 
   return (
-    <header className="relative z-20 mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
-      <Link href="/signup" className="flex items-center gap-2.5">
-        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand/20 ring-1 ring-brand-glow/40">
-          <span className="h-3 w-3 rounded-full bg-brand-glow shadow-[0_0_16px_rgba(74,222,128,0.9)]" />
+    <header className="relative z-20 mx-auto flex w-full max-w-6xl items-center justify-between px-7 py-3 sm:px-10 sm:py-5 md:px-6">
+      <Link href="/signup" className="flex min-w-0 items-center gap-2 sm:gap-2.5">
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand/20 ring-1 ring-brand-glow/40 sm:h-9 sm:w-9 sm:rounded-xl">
+          <span className="h-2.5 w-2.5 rounded-full bg-brand-glow shadow-[0_0_16px_rgba(74,222,128,0.9)] sm:h-3 sm:w-3" />
         </span>
-        <span className="text-base font-bold tracking-tight text-white sm:text-lg">
+        <span className="truncate text-[13px] font-bold tracking-tight text-white sm:text-base md:text-lg">
           Dark Flash <span className="text-brand-glow">USDT</span>
         </span>
       </Link>
 
-      <nav className="flex items-center gap-2">
+      <nav className="flex shrink-0 items-center gap-1.5 sm:gap-2">
         <Link
           href="/login"
-          className={`rounded-full px-5 py-2.5 text-sm font-semibold transition ${
+          className={`rounded-full px-3 py-1.5 text-[11px] font-semibold transition sm:px-5 sm:py-2.5 sm:text-sm ${
             onLogin
               ? "bg-brand text-white shadow-[0_10px_30px_-10px_rgba(22,163,74,0.9)]"
               : "border border-white/15 bg-white/5 text-white/80 hover:bg-white/10 hover:text-white"
@@ -32,7 +32,7 @@ export function AuthHeader() {
         </Link>
         <Link
           href="/signup"
-          className={`rounded-full px-5 py-2.5 text-sm font-semibold transition ${
+          className={`rounded-full px-3 py-1.5 text-[11px] font-semibold transition sm:px-5 sm:py-2.5 sm:text-sm ${
             onSignup
               ? "bg-brand text-white shadow-[0_10px_30px_-10px_rgba(22,163,74,0.9)]"
               : "border border-white/15 bg-white/5 text-white/80 hover:bg-white/10 hover:text-white"

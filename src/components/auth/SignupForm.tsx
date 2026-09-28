@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { Lock, Mail, User } from "lucide-react";
+import { Lock, Mail } from "lucide-react";
 import { signup } from "@/app/actions/auth";
 import { AuthInput } from "./AuthInput";
 import { SubmitButton } from "./SubmitButton";
@@ -11,15 +11,7 @@ export function SignupForm() {
   const [state, action, pending] = useActionState(signup, undefined);
 
   return (
-    <form action={action} className="flex flex-col gap-4" noValidate>
-      <AuthInput
-        name="name"
-        placeholder="Name"
-        icon={User}
-        autoComplete="name"
-        errors={state?.errors?.name}
-        defaultValue={state?.values?.name}
-      />
+    <form action={action} className="flex flex-col gap-3 sm:gap-4" noValidate>
       <AuthInput
         name="email"
         type="email"
@@ -49,7 +41,7 @@ export function SignupForm() {
       {state?.message && (
         <p
           role="alert"
-          className="rounded-xl border border-red-400/40 bg-red-500/10 px-4 py-2.5 text-center text-sm text-red-200"
+          className="rounded-xl border border-red-400/40 bg-red-500/10 px-3 py-2 text-center text-xs text-red-200 sm:px-4 sm:py-2.5 sm:text-sm"
         >
           {state.message}
         </p>
@@ -59,7 +51,7 @@ export function SignupForm() {
         <SubmitButton pending={pending}>Create Account</SubmitButton>
       </div>
 
-      <p className="mt-3 text-center text-xs text-white/55">
+      <p className="mt-2 text-center text-[11px] text-white/55 sm:mt-3 sm:text-xs">
         Already have an account?{" "}
         <Link href="/login" className="font-medium text-brand-glow hover:underline">
           Sign in here

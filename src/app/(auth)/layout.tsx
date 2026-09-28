@@ -8,7 +8,7 @@ export default function AuthLayout({
 }) {
   return (
     <div className="relative flex min-h-screen flex-col">
-      <ThemeBackground variant="main" dim={0.32} />
+      <ThemeBackground dim={0.22} />
       <AuthHeader />
       {children}
     </div>
