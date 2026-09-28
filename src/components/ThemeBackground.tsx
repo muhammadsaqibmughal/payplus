@@ -9,19 +9,27 @@ export function ThemeBackground({ dim = 0.28 }: Props) {
   return (
     <div className="theme-bg" aria-hidden>
       <Image
+        src="/assest/bg-coins-mobile.jpg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="h-full w-full object-cover object-center sm:hidden"
+      />
+      <Image
         src="/assest/bg-coins.jpg"
         alt=""
         fill
         priority
         sizes="100vw"
-        className="h-full w-full object-cover object-center"
+        className="hidden h-full w-full object-cover object-center sm:block"
       />
       <div
         className="absolute inset-0"
         style={{
-          background: `linear-gradient(180deg, rgba(3,20,32,${dim * 0.7}) 0%, rgba(3,20,32,${
-            dim * 0.4
-          }) 40%, rgba(3,20,32,${dim + 0.2}) 100%)`,
+          background: `linear-gradient(180deg, rgba(3,20,32,${dim * 0.55}) 0%, rgba(3,20,32,${
+            dim * 0.3
+          }) 42%, rgba(3,20,32,${dim + 0.18}) 100%)`,
         }}
       />
     </div>
